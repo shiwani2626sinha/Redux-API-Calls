@@ -1,0 +1,69 @@
+Three core concepts of redux
+1. a store that holds the state of your application
+2. action decribes what happened- the changes in the state of the application
+3. reducer- which actually carries out the state transition depending on the action
+
+three principles of redux
+1. the state of your application is stored in an object tree within a single store 
+2. the only way to change the state is to emit an action, an object describing what happened
+3. to specify the state tree is transformed by actions, you write pure reducers
+
+
+* app is subsribed to the redux store(state) but it cannot directly change the state
+value so it emitts an action which is taken by the reducer and action is performed by reducer on
+the redux store. the value is easily retrived in the js app as it is subsribed to the store
+ 
+
+* actions
+1)the only way your application can interact with the redux store
+2) carry some information from your app to the redux store
+3) plain js objects
+4)type property that is a string constant defined as string constants
+
+*reducers
+1)specify how the app's state changesin response to actions sent to the store
+2) function that accepts state and action as arguments, and returns the next state od the application
+(previousState, action) => newState
+
+*Redux Store
+1) holds application state
+2)one store for the entire application
+3) allows access to the state via getState()
+4)allows state to be updated via dispatch(action)
+5)register listeners via subsribe(listeners)
+6)handles unregistering of the listeners via function returned by subscribe(listener)
+
+*redux-logger middleware:
+this package logs all the information about redux in your project
+
+*Async actions in redux
+1)This includes aync actions such as API calls, so below are the data that need to be fetched through API
+state consists of 3 things generally
+a> loading: true // means that data is being able tp fetched or not
+b> data:[] // an array of info fetched
+c> error:'' // error that occured.
+
+2)Three actions included
+a> FETCH_USERS_REQUEST - fetch list of users 
+b> FETCH_USERS_SUCCESS - fetched successfully
+c> FETCH_USERS_FAILURE - error fetching data
+
+3)reducer
+case: FETCH_USERS_REQUEST
+        loading: true
+
+case : FETCH_USERS_SUCCESS
+        loading: false
+        users: data(FROM API)
+
+case : FETCH_USERS_FAILURE
+        loading: false
+        users: error(FROM API)               
+
+*Async action creators
+
+>axios
+Requests to an API end point
+
+>redux-thunk
+defines Async action creators
